@@ -7,7 +7,7 @@ with open('pyros_config/_version.py') as vf:
 
 setup(name='pyros_config',
     version='0.1.0',
-    description='Toolsuite for running ROS environments directly from python code, without any specific requirements outside of usual python',
+    description='Classes to manage a server configuration. Heavily inspired by flask',
     url='http://github.com/asmodehn/pyros-config',
     author='AlexV',
     author_email='asmodehn@gmail.com',
@@ -26,6 +26,7 @@ setup(name='pyros_config',
         'six',
         'importlib'
     ],
+    # TODO: pytest and tox
     test_suite="nose.collector",
     tests_require=[
         'nose>=1.3.7'

@@ -3,7 +3,7 @@ import os
 import nose
 import pkg_resources
 
-_path = pkg_resources.resource_filename("pyros_config", "nosemain.py")
+_path = pkg_resources.resource_filename("pyros_config", "__main__.py")
 _parent = os.path.normpath(os.path.join(os.path.dirname(_path), ".."))
 
 

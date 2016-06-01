@@ -100,7 +100,8 @@ class ConfigImport(types.ModuleType):
                         msg=ie.message)
                     )
                     mod = ie.message.split()[-1]
-                    logging.error("Make sure you have installed the ros-<distro>-{mod} package".format(mod=mod))
+                    logging.error("Make sure you have installed the {mod} python package".format(mod=mod))
+                    logging.error("sys.path: {0}".format(sys.path))
                     raise
 
         for n in symbols.keys():
