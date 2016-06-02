@@ -2,7 +2,6 @@
 <package format="2">
   <!--
    This file is mostly here to provide ros dependencies when this project is built with catkin
-   A normal pip package is provided for it, but it currently does not support being built as a ROS package.
    -->
   <name>pyros_config</name>
   <version>0.1.0</version>
@@ -12,8 +11,8 @@
 
   <license>BSD</license>
 
-  <url type="repository">https://github.com/asmodehn/pyros-setup</url>
-  <url type="bugtracker">https://github.com/asmodehn/pyros-setup/issues</url>
+  <url type="repository">https://github.com/asmodehn/pyros-config</url>
+  <url type="bugtracker">https://github.com/asmodehn/pyros-config/issues</url>
 
   <author email="asmodehn@gmail.com">AlexV</author>
   <maintainer email="asmodehn@gmail.com">AlexV</maintainer>
