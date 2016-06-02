@@ -6,7 +6,7 @@ with open('pyros_config/_version.py') as vf:
     exec(vf.read())
 
 setup(name='pyros_config',
-    version='0.1.0',
+    version=__version__,
     description='Classes to manage a server configuration. Heavily inspired by flask',
     url='http://github.com/asmodehn/pyros-config',
     author='AlexV',
@@ -23,13 +23,11 @@ setup(name='pyros_config',
     },
     include_package_data=True,  # use MANIFEST.in during install.
     install_requires=[
-        'six'
+        'six',
+        'pytest'  # since tests are embedded in the package
     ],
-    # TODO: pytest and tox
-    test_suite="nose.collector",
-    tests_require=[
-        'nose>=1.3.7'
-    ],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     zip_safe=False,  # TODO testing...
 )
 
