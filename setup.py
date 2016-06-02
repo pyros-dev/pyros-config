@@ -6,7 +6,7 @@ with open('pyros_config/_version.py') as vf:
     exec(vf.read())
 
 setup(name='pyros_config',
-    version='0.1.0',
+    version=__version__,
     description='Classes to manage a server configuration. Heavily inspired by flask',
     url='http://github.com/asmodehn/pyros-config',
     author='AlexV',
