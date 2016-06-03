@@ -16,20 +16,19 @@ env:
   # This will check any ROS distro supported on this OS
   - DISTRO=indigo
   - DISTRO=jade
-  - DISTRO=none
 
 # This is the same for all builds
 before_install:
-  # Install ROS if we need it on system.
-  - if [ "$DISTRO" != "none" ]; then bash rosutils/install_ros.sh; fi
+  # Install ROS. We always need it on system.
+  - bash rosutils/install_ros.sh
   # Install package ROS dependencies (needed until we can package a standard python deb for pyros-setup. see https://github.com/asmodehn/pyros-setup/issues/16)
-  - if [ "$DISTRO" != "none" ]; then rosdep install --default-yes --from-paths ./ --rosdistro $DISTRO; fi
+  - rosdep install --default-yes --from-paths ./ --rosdistro $DISTRO
 
 install:
-  - if [ "$DISTRO" == "none" ]; then (pip install tox tox-travis); else (bash rosutils/build_devel.sh $DISTRO && bash rosutils/build_install.sh); fi
+  - pip install tox tox-travis
 
 script:
-  - if [ "$DISTRO" == "none" ]; then (tox); else (bash rosutils/test_devel.sh && bash rosutils/test_install.sh); fi
+  - tox
 
 notifications:
   email: false
