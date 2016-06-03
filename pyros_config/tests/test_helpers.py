@@ -4,6 +4,10 @@
     ~~~~~~~~~~~~
 """
 
+
+def test_fake():
+    return True
+
 # From flask tst.helpers. maybe useful for us as well ?
 #
 # import flask

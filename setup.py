@@ -24,13 +24,10 @@ setup(name='pyros_config',
     include_package_data=True,  # use MANIFEST.in during install.
     install_requires=[
         'six',
-        'importlib'
+        'pytest'  # since tests are embedded in the package
     ],
-    # TODO: pytest and tox
-    test_suite="nose.collector",
-    tests_require=[
-        'nose>=1.3.7'
-    ],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
     zip_safe=False,  # TODO testing...
 )
 
