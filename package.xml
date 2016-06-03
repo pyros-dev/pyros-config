@@ -4,7 +4,7 @@
    This file is mostly here to provide ros dependencies when this project is built with catkin
    -->
   <name>pyros_config</name>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <description>
   Configuration package for Pyros
   </description>
