@@ -7,8 +7,12 @@
     Inspired from Flask
 """
 
+from __future__ import absolute_import
+from __future__ import print_function
+
 import os
 import pkgutil
+import six
 import sys
 from threading import RLock
 
@@ -44,7 +48,7 @@ class ConfigHandler(PackageBound):
     # This function attempts to find out what was the configuration passed
     # And retrieve values accordingly...
     def configure(self, config):
-        if isinstance(config, (str, unicode)):
+        if isinstance(config, six.string_types):
             self.config.from_pyfile(config)
         elif isinstance(config, dict):
             self.config.from_mapping(**config)
