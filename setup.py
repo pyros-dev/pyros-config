@@ -18,7 +18,7 @@ setup(name='pyros_config',
     ],
     entry_points={
         'console_scripts': [
-            'pyros_config = pyros_config.__main__:nosemain'
+            'pyros_config = pyros_config.__main__:main'
         ]
     },
     include_package_data=True,  # use MANIFEST.in during install.
