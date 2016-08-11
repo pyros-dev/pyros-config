@@ -98,9 +98,9 @@ class ConfigImport(types.ModuleType):
                 except ImportError as ie:
                     logging.error("importlib.import_module{m} FAILED : {msg}".format(
                         m=m if isinstance(m, tuple) else "(" + m + ")",  # just to get the correct code in log output
-                        msg=ie.message)
+                        msg=str(ie))
                     )
-                    mod = ie.message.split()[-1]
+                    mod = str(ie).split()[-1]
                     logging.error("Make sure you have installed the {mod} python package".format(mod=mod))
                     logging.error("sys.path: {0}".format(sys.path))
                     raise
