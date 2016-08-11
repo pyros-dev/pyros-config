@@ -1,8 +1,13 @@
 Pyros-config
-===========
+============
 
 .. image:: https://travis-ci.org/asmodehn/pyros-config.svg?branch=master
     :target: https://travis-ci.org/asmodehn/pyros-config
+
+ROS Release :
+
+.. image:: https://travis-ci.org/asmodehn/pyros-config-rosrelease.svg?branch=master
+    :target: https://travis-ci.org/asmodehn/pyros-config-rosrelease
 
 Package to help manage configuration of always running servers
 this is heavily inspired from flask configuration
