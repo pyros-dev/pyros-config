@@ -4,8 +4,11 @@ from __future__ import print_function
 
 import importlib
 import logging
+import os
 import types
 import sys
+
+import errno
 import six
 
 from .confighandler import ConfigHandler
@@ -66,10 +69,20 @@ class ConfigImport(types.ModuleType):
     def root_path(self):
         return self.config_handler.root_path
 
-    def configure(self, config=None):
+    def configure(self, config=None, create_if_missing=None):
         # We default to using a config file named after the import_name:
         config = config or self.name + '.cfg'
-        self.config_handler.configure(config)
+        try:
+            logging.info("Loading configuration from {0}".format(config))
+            self.config_handler.configure(config)
+        except IOError as e:
+            if e.errno not in (errno.EISDIR, ):
+                cfg_filename = os.path.join(self.config_handler.config.root_path, config)
+
+                if create_if_missing:
+                    with open(cfg_filename, 'w') as cfg_file:
+                        cfg_file.write(create_if_missing)
+                    logging.warning("Default configuration has been generated in {cfg_filename}".format(**locals()))
         return self
 
     def activate(self):
