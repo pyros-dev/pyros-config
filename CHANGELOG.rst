@@ -1,8 +1,8 @@
 Changelog
 =========
 
-%%version%% (unreleased)
-------------------------
+0.1.4 (2016-08-30)
+------------------
 
 - Improved setup.py publish and tag commands. [alexv]
 
