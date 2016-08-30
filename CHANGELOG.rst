@@ -1,8 +1,29 @@
 Changelog
 =========
 
+%%version%% (unreleased)
+------------------------
+
+- Improved setup.py publish and tag commands. [alexv]
+
+- Fix creating directory for generated default config file if it doesnt
+  exists yet. [alexv]
+
+- Adding IOError handling by creating default configuration file from
+  provided string. [alexv]
+
+- Changed version number to patch .99 to denote devel version. [alexv]
+
+- Removing useless cmakelists. [alexv]
+
+- Fixed configimport for python3. [alexv]
+
+- Added setup.cfg. added badge for ros release builds. [alexv]
+
 0.1.3 (2016-08-10)
 ------------------
+
+- More cleanup of ros stuff. preparing 0.1.3. [alexv]
 
 - Improved setup to do releases. removed ros files from master branch.
   [alexv]
