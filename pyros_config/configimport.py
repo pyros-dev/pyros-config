@@ -80,7 +80,14 @@ class ConfigImport(types.ModuleType):
                 cfg_filename = os.path.join(self.config_handler.config.root_path, config)
 
                 if create_if_missing:
-                    with open(cfg_filename, 'w') as cfg_file:
+                    if not os.path.exists(os.path.dirname(cfg_filename)):
+                        try:
+                            os.makedirs(os.path.dirname(cfg_filename))
+                        except OSError as exc:  # Guard against race condition
+                            if exc.errno != errno.EEXIST:
+                                raise
+
+                    with open(cfg_filename, 'w+') as cfg_file:
                         cfg_file.write(create_if_missing)
                     logging.warning("Default configuration has been generated in {cfg_filename}".format(**locals()))
         return self
