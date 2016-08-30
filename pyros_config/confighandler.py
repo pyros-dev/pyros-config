@@ -17,8 +17,6 @@ import sys
 from threading import RLock
 
 from .config import Config
-
-from .config import Config
 from .packagebound import PackageBound
 from .helpers import locked_cached_property
 

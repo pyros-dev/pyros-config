@@ -15,7 +15,7 @@ with open('pyros_config/_version.py') as vf:
 # git commit "v<M.m.p>"
 # python setup.py publish
 # python setup.py tag
-# => try to do a simple "release" command
+# TODO => try to do a simple "release" command
 
 
 # Clean way to add a custom "python setup.py <command>"
