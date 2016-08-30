@@ -3,30 +3,75 @@
 import os
 
 import sys
-from setuptools import setup
+import setuptools
 
 with open('pyros_config/_version.py') as vf:
     exec(vf.read())
 
-if sys.argv[-1] == 'publish':
+# Best Flow :
+# git changelog >CHANGELOG.rst
+# git commit "updating changelog"
+# change version in code and changelog
+# git commit "v<M.m.p>"
+# python setup.py publish
+# python setup.py tag
+# => try to do a simple "release" command
 
-    os.system("python setup.py sdist")
-    os.system("python setup.py bdist_wheel")
-    # OLD way:
-    #os.system("python setup.py sdist bdist_wheel upload")
-    # NEW way:
-    # Ref: https://packaging.python.org/distributing/
-    os.system("twine upload dist/*")
-    print("You probably want to also tag the version now:")
-    print("  python setup.py tag")
-    sys.exit()
 
-if sys.argv[-1] == 'tag':
-    os.system("git tag -a {0} -m 'version {0}'".format(__version__))
-    os.system("git push --tags")
-    sys.exit()
+# Clean way to add a custom "python setup.py <command>"
+# Ref setup.py command extension : https://blog.niteoweb.com/setuptools-run-custom-code-in-setup-py/
+class PublishCommand(setuptools.Command):
+    """Command to release this package to Pypi"""
+    description = "releases pyros_setup to Pypi"
+    user_options = []
 
-setup(name='pyros_config',
+    def initialize_options(self):
+        """init options"""
+        pass
+
+    def finalize_options(self):
+        """finalize options"""
+        pass
+
+    def run(self):
+        """runner"""
+
+        os.system("python setup.py sdist")
+        os.system("python setup.py bdist_wheel")
+        # OLD way:
+        # os.system("python setup.py sdist bdist_wheel upload")
+        # NEW way:
+        # Ref: https://packaging.python.org/distributing/
+        os.system("twine upload dist/*")
+        print("You probably want to also tag the version now:")
+        print("  python setup.py tag")
+        sys.exit()
+
+
+# Clean way to add a custom "python setup.py <command>"
+# Ref setup.py command extension : https://blog.niteoweb.com/setuptools-run-custom-code-in-setup-py/
+class TagCommand(setuptools.Command):
+    """Command to release this package to Pypi"""
+    description = "tag a release of pyros_setup"
+    user_options = []
+
+    def initialize_options(self):
+        """init options"""
+        pass
+
+    def finalize_options(self):
+        """finalize options"""
+        pass
+
+    def run(self):
+        """runner"""
+
+        os.system("git tag -a {0} -m 'version {0}'".format(__version__))
+        os.system("git push --tags")
+        sys.exit()
+
+
+setuptools.setup(name='pyros_config',
     version=__version__,
     description='Classes to manage a server configuration. Heavily inspired by flask',
     url='http://github.com/asmodehn/pyros-config',
@@ -49,6 +94,10 @@ setup(name='pyros_config',
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
+    cmdclass={
+        'tag': TagCommand,
+        'publish': PublishCommand,
+    },
     zip_safe=False,  # TODO testing...
 )
 
