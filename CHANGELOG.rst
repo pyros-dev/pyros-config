@@ -1,8 +1,8 @@
 Changelog
 =========
 
-%%version%% (unreleased)
-------------------------
+0.1.5 (2016-08-31)
+------------------
 
 - Fixed regression about accepting dict and object when configuring.
   [alexv]
