@@ -1,8 +1,20 @@
 Changelog
 =========
 
+%%version%% (unreleased)
+------------------------
+
+- Fixed regression about accepting dict and object when configuring.
+  [alexv]
+
+- Improved logging. cosmetics. [alexv]
+
 0.1.4 (2016-08-30)
 ------------------
+
+- V0.1.4. [alexv]
+
+- Generated changelog. [alexv]
 
 - Improved setup.py publish and tag commands. [alexv]
 

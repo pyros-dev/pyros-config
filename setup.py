@@ -9,13 +9,15 @@ with open('pyros_config/_version.py') as vf:
     exec(vf.read())
 
 # Best Flow :
-# git changelog >CHANGELOG.rst
-# git commit "updating changelog"
+# $ gitchangelog >CHANGELOG.rst
+# $ git commit CHANGELOG.rst -m "updating changelog"
 # change version in code and changelog
-# git commit "v<M.m.p>"
-# python setup.py publish
-# python setup.py tag
-# TODO => try to do a simple "release" command
+# $ git commit CHANGELOG.rst pyros_config/_version.py -m "v<M.m.p>"
+# $ git push
+# WAIT FOR TRAVIS CHECKS
+# $ python setup.py publish
+# $ python setup.py tag
+# => TODO : try to do a simpler "release" command
 
 
 # Clean way to add a custom "python setup.py <command>"
