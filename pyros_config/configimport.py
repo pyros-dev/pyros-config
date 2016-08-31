@@ -77,15 +77,18 @@ class ConfigImport(types.ModuleType):
     def configure(self, config=None, create_if_missing=None):
         # We default to using a config file named after the import_name:
         config = config or self.name + '.cfg'
-        # predict filename
-        cfg_filename = os.path.join(self.config_handler.config.root_path, config)
-        _logger.info("Loading configuration from {0}".format(cfg_filename))
+        cfg_filename = None
+        if isinstance(config, six.string_types):
+            # TODO : this should probably move into confighandler module...
+            # we assume the intent is filename. predicting fullpath...
+            cfg_filename = os.path.join(self.config_handler.config.root_path, config)
+            _logger.info("Loading configuration from {0}".format(cfg_filename))
         try:
             # Let the config handler decide on the filename
             self.config_handler.configure(config)
-        except IOError as e:
+        except IOError as e:  # should happen only in filename case
             if e.errno not in (errno.EISDIR, ):
-                if create_if_missing:
+                if create_if_missing and cfg_filename:
                     if not os.path.exists(os.path.dirname(cfg_filename)):
                         try:
                             os.makedirs(os.path.dirname(cfg_filename))
