@@ -6,6 +6,10 @@
     Implements the configuration related objects.
     Inspired from flask project
 """
+
+from __future__ import absolute_import
+from __future__ import print_function
+
 import importlib
 import json
 import os
