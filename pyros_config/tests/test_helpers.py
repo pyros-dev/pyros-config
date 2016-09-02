@@ -8,6 +8,8 @@
 def test_fake():
     return True
 
+# TODO : tests, Tests, TESTS !!!
+
 # From flask tst.helpers. maybe useful for us as well ?
 #
 # import flask

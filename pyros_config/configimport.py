@@ -1,13 +1,22 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import print_function
 
 import importlib
 import logging
+import os
 import types
 import sys
+
+import errno
 import six
 
 from .confighandler import ConfigHandler
+
+# create logger
+_logger = logging.getLogger(__name__)
+# and let it propagate to parent logger, or other handler
+# the user of pyros-config should configure handlers
 
 
 # class to allow (potentially infinite) delayed conditional import.
@@ -65,10 +74,31 @@ class ConfigImport(types.ModuleType):
     def root_path(self):
         return self.config_handler.root_path
 
-    def configure(self, config=None):
+    def configure(self, config=None, create_if_missing=None):
         # We default to using a config file named after the import_name:
         config = config or self.name + '.cfg'
-        self.config_handler.configure(config)
+        cfg_filename = None
+        if isinstance(config, six.string_types):
+            # TODO : this should probably move into confighandler module...
+            # we assume the intent is filename. predicting fullpath...
+            cfg_filename = os.path.join(self.config_handler.config.root_path, config)
+            _logger.info("Loading configuration from {0}".format(cfg_filename))
+        try:
+            # Let the config handler decide on the filename
+            self.config_handler.configure(config)
+        except IOError as e:  # should happen only in filename case
+            if e.errno not in (errno.EISDIR, ):
+                if create_if_missing and cfg_filename:
+                    if not os.path.exists(os.path.dirname(cfg_filename)):
+                        try:
+                            os.makedirs(os.path.dirname(cfg_filename))
+                        except OSError as exc:  # Guard against race condition
+                            if exc.errno != errno.EEXIST:
+                                raise
+
+                    with open(cfg_filename, 'w+') as cfg_file:
+                        cfg_file.write(create_if_missing)
+                        _logger.warning("Default configuration has been generated in {cfg_filename}".format(**locals()))
         return self
 
     def activate(self):
@@ -95,13 +125,13 @@ class ConfigImport(types.ModuleType):
                     else:
                         symbols[n] = importlib.import_module(m)
                 except ImportError as ie:
-                    logging.error("importlib.import_module{m} FAILED : {msg}".format(
+                    _logger.error("importlib.import_module{m} FAILED : {msg}".format(
                         m=m if isinstance(m, tuple) else "(" + m + ")",  # just to get the correct code in log output
-                        msg=ie.message)
+                        msg=str(ie))
                     )
-                    mod = ie.message.split()[-1]
-                    logging.error("Make sure you have installed the {mod} python package".format(mod=mod))
-                    logging.error("sys.path: {0}".format(sys.path))
+                    mod = str(ie).split()[-1]
+                    _logger.error("Make sure you have installed the {mod} python package".format(mod=mod))
+                    _logger.error("sys.path: {0}".format(sys.path))
                     raise
 
         for n in symbols.keys():
