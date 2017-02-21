@@ -11,10 +11,15 @@ from __future__ import absolute_import
 from __future__ import print_function
 
 import os
-import pkgutil
+import logging
+
+import errno
 import six
-import sys
-from threading import RLock
+
+# create logger
+_logger = logging.getLogger(__name__)
+# and let it propagate to parent logger, or other handler
+# the user of pyros-config should configure handlers
 
 from .config import Config
 from .packagebound import PackageBound
@@ -45,6 +50,36 @@ class ConfigHandler(PackageBound):
 
     # This function attempts to find out what was the configuration passed
     # And retrieve values accordingly...
+
+    def configure_file(self, config, create_if_missing=None):
+        """
+        :param config: a filepath to the configuration.
+        :param create_if_missing: If file is not found, it will be created with this.
+        :return: self
+        """
+        # We default to using a config file named after the import_name:
+        config = config or self.name + '.cfg'
+        cfg_filename = None
+        if isinstance(config, six.string_types):
+            # we assume the intent is filename. predicting fullpath...
+            cfg_filename = os.path.join(self.config.root_path, config)
+            _logger.info("Loading configuration from {0}".format(cfg_filename))
+
+        try:
+            self.configure(config)
+        except IOError as e:  # should happen only in filename case
+            if e.errno not in (errno.EISDIR,) and create_if_missing and cfg_filename:
+                if not os.path.exists(os.path.dirname(cfg_filename)):
+                    try:
+                        os.makedirs(os.path.dirname(cfg_filename))
+                    except OSError as exc:  # Guard against race condition
+                        if exc.errno != errno.EEXIST:
+                            raise
+
+                with open(cfg_filename, 'w+') as cfg_file:
+                    cfg_file.write(create_if_missing)
+                    _logger.warning("Default configuration has been generated in {cfg_filename}".format(**locals()))
+
     def configure(self, config):
         if isinstance(config, six.string_types):
             self.config.from_pyfile(config)
