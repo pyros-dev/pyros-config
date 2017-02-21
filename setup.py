@@ -10,7 +10,6 @@ with open('pyros_config/_version.py') as vf:
 
 # Best Flow :
 # $ gitchangelog >CHANGELOG.rst
-# $ git commit CHANGELOG.rst -m "updating changelog"
 # change version in code and changelog
 # $ git commit CHANGELOG.rst pyros_config/_version.py -m "v<M.m.p>"
 # $ git push
@@ -94,7 +93,9 @@ setuptools.setup(name='pyros_config',
         'six',
         'pytest'  # since tests are embedded in the package
     ],
-    setup_requires=['pytest-runner'],
+    setup_requires=[
+        'pytest-runner',
+    ],
     tests_require=['pytest'],
     cmdclass={
         'tag': TagCommand,
