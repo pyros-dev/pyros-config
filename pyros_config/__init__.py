@@ -7,10 +7,8 @@ logging.getLogger(__package__).addHandler(logging.NullHandler())
 
 from .packagebound import PackageBound
 from .confighandler import ConfigHandler
-from .configimport import ConfigImport
 
 __all__ = [
     'PackageBound',
     'ConfigHandler',
-    'ConfigImport',
 ]
