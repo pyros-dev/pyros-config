@@ -23,7 +23,7 @@ with open('pyros_config/_version.py') as vf:
 # Ref setup.py command extension : https://blog.niteoweb.com/setuptools-run-custom-code-in-setup-py/
 class PublishCommand(setuptools.Command):
     """Command to release this package to Pypi"""
-    description = "releases pyros_setup to Pypi"
+    description = "releases pyros_config to Pypi"
     user_options = []
 
     def initialize_options(self):
