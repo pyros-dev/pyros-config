@@ -101,3 +101,5 @@ class ConfigHandler(PackageBound):
             root_path = self.instance_path
         return self.config_class(root_path, self.default_config)
 
+    def __repr__(self):
+        return '<%s %s>' % (self.__class__.__name__, vars(self))
