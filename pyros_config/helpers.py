@@ -82,7 +82,7 @@ def find_package(import_name):
     py_prefix = os.path.abspath(sys.prefix)
     if package_path.startswith(py_prefix):
         return py_prefix, package_path
-    elif site_folder.lower() == 'site-packages':
+    elif site_folder.lower() in ['site-packages', 'dist-packages']:
         parent, folder = os.path.split(site_parent)
         # Windows like installations
         if folder.lower() == 'lib':
