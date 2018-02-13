@@ -1,13 +1,13 @@
 Pyros-config
 ============
 
-.. image:: https://travis-ci.org/asmodehn/pyros-config.svg?branch=master
-    :target: https://travis-ci.org/asmodehn/pyros-config
+.. image:: https://travis-ci.org/pyros-dev/pyros-config.svg?branch=master
+    :target: https://travis-ci.org/pyros-dev/pyros-config
 
 ROS Release :
 
-.. image:: https://travis-ci.org/asmodehn/pyros-config-rosrelease.svg?branch=master
-    :target: https://travis-ci.org/asmodehn/pyros-config-rosrelease
+.. image:: https://travis-ci.org/pyros-dev/pyros-config-rosrelease.svg?branch=master
+    :target: https://travis-ci.org/pyros-dev/pyros-config-rosrelease
 
 Package to help manage configuration of always running servers
 this is heavily inspired from flask configuration
@@ -33,7 +33,7 @@ How to develop
 
 Clone this repository
 ```
-git clone http://github.com/asmodehn/pyros-config
+git clone http://github.com/pyro-dev/pyros-config
 ```
 
 Create you virtualenv to workon using virtualenvwrapper
