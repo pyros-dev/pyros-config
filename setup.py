@@ -71,10 +71,17 @@ class TagCommand(setuptools.Command):
         os.system("git push --tags")
         sys.exit()
 
+# read the contents of your README file : https://packaging.python.org/guides/making-a-pypi-friendly-readme/
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setuptools.setup(name='pyros_config',
     version=__version__,
     description='Classes to manage a server configuration. Heavily inspired by flask',
+    long_description=long_description,
+    long_description_content_type="text/x-rst",
     url='http://github.com/asmodehn/pyros-config',
     author='AlexV',
     author_email='asmodehn@gmail.com',
