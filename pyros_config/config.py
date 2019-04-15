@@ -156,7 +156,7 @@ class Config(dict):
 
         :param obj: an import name or object
         """
-        if isinstance(obj, (str, unicode)):
+        if isinstance(obj, six.string_types):
             obj = importlib.import_module(obj)
         for key in dir(obj):
             if key.isupper():
