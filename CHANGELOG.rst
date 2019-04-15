@@ -2,8 +2,36 @@ Changelog
 =========
 
 
+0.2.1 (2018-04-15)
+------------------------
+- Removing MANIFEST. cleaning up README. [AlexV]
+- Attempting to configure pyup with pipfile. [AlexV]
+- Specifying xenial distro for travis, to get recent python versions.
+  Now using the various python3 versions via tox. [AlexV]
+- Now using travis version of python, independently of linux distro.
+  [AlexV]
+- Relying on six for portable string instance detection. [AlexV]
+- Replacing requirements files with pipfile. [AlexV]
+- First attempt to restructure the README for pipenv usage. [AlexV]
+- Adding recent python version for testing. [AlexV]
+- Adding direnv using pipenv layout. [AlexV]
+- Adding Pipfile to support pipenv for ease of use. [AlexV]
+- Update pytest from 3.2.0 to 3.5.0. [pyup-bot]
+- Fixing README repo link after move. [AlexV]
+
+  asmodehn -> pyros-dev
+- Update pytest from 3.0.7 to 3.2.0. [pyup-bot]
+- Update gitchangelog from 2.5.0 to 3.0.3. [pyup-bot]
+- Now also detecting debian layout 'dist-packages' installs. [AlexV]
+- Adding repr for confighandler. [AlexV]
+- Adding __version__ to __init__ module. [alexv]
+- Update pytest from 3.0.4 to 3.0.7. [pyup-bot]
+- Setup.py publish command description change. [AlexV]
+
+
 0.2.0 (2017-02-21)
 ------------------
+- V0.2.0. [AlexV]
 - Getting rid of config import to avoid deep complex behavior. Lets not
   care about imports here... [AlexV]
 - Update gitchangelog from 2.4.1 to 2.5.1. [pyup-bot]
@@ -81,6 +109,5 @@ Changelog
 - Generated changelog. [alexv]
 - Cleaned up README. added .travis.yml. [alexv]
 - Copying files from pyros-setup. [alexv]
-
 
 
