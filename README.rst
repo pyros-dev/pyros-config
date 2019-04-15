@@ -4,26 +4,21 @@ Pyros-config
 .. image:: https://travis-ci.org/pyros-dev/pyros-config.svg?branch=master
     :target: https://travis-ci.org/pyros-dev/pyros-config
 
-ROS Release :
-
-.. image:: https://travis-ci.org/pyros-dev/pyros-config-rosrelease.svg?branch=master
-    :target: https://travis-ci.org/pyros-dev/pyros-config-rosrelease
-
-Package to help manage configuration of always running servers
-this is heavily inspired from flask configuration
+Package to help manage configuration of always running servers/nodes
+This is heavily inspired from flask configuration
 
 This is a pure python package.
-It is also provided as a ROS package for ease of use in pyros
 
 How to use
 ----------
-
-Install
+Using the virtual environment of your choice, you can :: 
+  
+- Install
 ```
 pip install pyros_config
 ```
 
-Run self tests
+- Run self tests
 ```
 pyros_config
 ```
@@ -36,7 +31,17 @@ Clone this repository
 git clone http://github.com/pyro-dev/pyros-config
 ```
 
-Create you virtualenv to workon using virtualenvwrapper
+- The easy way : use pipenv. For most users.
+
+Enter the virtual env to have access to pyros_config and dependencies
+```
+Pipenv shell
+```
+You can also use direnv for implicit virtualenv activation. 
+
+- The hard way : use the python of your choice and pip to setup your environment. Use only if you want a total control of your environments. For python experts.
+
+Create you virtualenv to workon (example using virtualenvwrapper)
 ```
 mkvirtualenv pyros_config_env
 ```
@@ -58,3 +63,4 @@ tox
 
 Note : Tox envs are recreated every time to ensure consistency.
 So it s better to develop while in a non-tox-managed venv.
+
