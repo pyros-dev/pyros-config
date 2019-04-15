@@ -27,6 +27,7 @@ class PublishCommand(setuptools.Command):
     user_options = []
 
     def initialize_options(self):
+
         """init options"""
         pass
 
@@ -37,13 +38,12 @@ class PublishCommand(setuptools.Command):
     def run(self):
         """runner"""
 
-        os.system("python setup.py sdist")
-        os.system("python setup.py bdist_wheel")
+        os.system("pipenv run python setup.py sdist bdist bdist_wheel")
         # OLD way:
         # os.system("python setup.py sdist bdist_wheel upload")
         # NEW way:
         # Ref: https://packaging.python.org/distributing/
-        os.system("twine upload dist/*")
+        os.system("pipenv run twine upload dist/*")
         print("You probably want to also tag the version now:")
         print("  python setup.py tag")
         sys.exit()
@@ -53,7 +53,7 @@ class PublishCommand(setuptools.Command):
 # Ref setup.py command extension : https://blog.niteoweb.com/setuptools-run-custom-code-in-setup-py/
 class TagCommand(setuptools.Command):
     """Command to release this package to Pypi"""
-    description = "tag a release of pyros_setup"
+    description = "tag a release of pyros_config"
     user_options = []
 
     def initialize_options(self):
