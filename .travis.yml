@@ -1,5 +1,4 @@
-sudo: required
-dist: trusty
+dist: xenial
 language: python
 
 branches:
@@ -7,11 +6,11 @@ branches:
     - gh-pages
 
 python:
-  - 2.7
-  - 3.4
-  - 3.5
-  - 3.6
-  - 3.7
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
   #- pypy
   #- pypy3
 
