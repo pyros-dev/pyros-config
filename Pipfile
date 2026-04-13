@@ -8,4 +8,4 @@ gitchangelog = "==3.0.3"
 
 [packages]
 six = "==1.10.0"
-pytest = "==3.5.0"
+pytest = "==9.0.3"
